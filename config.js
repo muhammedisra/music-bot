@@ -2,7 +2,7 @@ module.exports = {
     app: {
         px: '--',
         token: "",
-        playing: 'to my master isra7766'
+        playing: 'my master isra7766'
     },
 
     opt: {
