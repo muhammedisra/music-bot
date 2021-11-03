@@ -2,7 +2,7 @@ module.exports = {
     app: {
         px: '--',
         token: "",
-        playing: 'Made by isra7766'
+        playing: 'to my master isra7766\' commands'
     },
 
     opt: {
