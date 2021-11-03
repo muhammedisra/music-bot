@@ -18,6 +18,7 @@ module.exports = {
 
         const queue = await player.createQueue(message.guild, {
             leaveOnEmpty: false,
+            leaveOnEnd: false,
             metadata: message.channel
         });
 
