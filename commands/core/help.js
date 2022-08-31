@@ -1,25 +1,20 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'help',
-    aliases: ['h'],
+    description: "All the commands this bot has!",
     showHelp: false,
-    utilisation: '{prefix}help',
 
-    execute(client, message, args) {
-        const embed = new MessageEmbed();
-
-        embed.setColor('RED');
-        embed.setAuthor(client.user.username, client.user.displayAvatarURL({ size: 1024, dynamic: true }));
-
+    execute({ client, inter }) {
         const commands = client.commands.filter(x => x.showHelp !== false);
 
-        embed.setDescription('This bot is coded by isra7766.\n DM isra7766#9601 for any suggestion.');
-        embed.addField(`Enabled - ${commands.size}`, commands.map(x => `\`${x.name}${x.aliases[0] ? ` (${x.aliases.map(y => y).join(', ')})\`` : '\`'}`).join(' | '));
+        const embed = new EmbedBuilder()
+        .setColor('#ff0000')
+        .setAuthor({ name: client.user.username, iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true }) })
+        .addFields([ { name: `Enabled - ${commands.size}`, value: commands.map(x => `\`${x.name}\``).join(' | ') } ])
+        .setTimestamp()
+        .setFooter({ text: 'Music comes first - Made with heart by Isra7766 ❤️', iconURL: inter.member.avatarURL({ dynamic: true })});
 
-        embed.setTimestamp();
-        embed.setFooter('Music comes first - Made with heart by isra7766 ❤️', message.author.avatarURL({ dynamic: true }));
-
-        message.channel.send({ embeds: [embed] });
+        inter.reply({ embeds: [embed] });
     },
 };
